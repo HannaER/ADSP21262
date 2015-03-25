@@ -77,11 +77,7 @@
 				</file>
 				<file name=".\cut.h">
 				</file>
-				<file name=".\fft_.h">
-				</file>
 				<file name=".\framework.h">
-				</file>
-				<file name=".\getX.h">
 				</file>
 				<file name=".\hamming.h">
 				</file>
@@ -95,9 +91,21 @@
 				</file>
 				<file name=".\rm_noise.h">
 				</file>
-				<file name=".\test_signal.h">
-				</file>
 			</files>
+			<folders>
+				<folder name="Testfiles">
+					<files>
+						<file name=".\fft_.h">
+						</file>
+						<file name=".\getX.h">
+						</file>
+						<file name=".\test_db.h">
+						</file>
+						<file name=".\test_signal.h">
+						</file>
+					</files>
+				</folder>
+			</folders>
 		</folder>
 		<folder name="Linker Files" ext=".ldf,.dlb">
 		</folder>
@@ -320,6 +328,22 @@
 							</file-configurations>
 						</file>
 						<file name=".\getX.c">
+							<file-configurations>
+								<file-configuration name="Debug">
+									<excluded-flag value="no"/>
+									<build-with-flag value="project"/>
+									<intermediate-dir>.\Debug</intermediate-dir>
+									<output-dir>.\Debug</output-dir>
+								</file-configuration>
+								<file-configuration name="Release">
+									<excluded-flag value="no"/>
+									<build-with-flag value="project"/>
+									<intermediate-dir>.\Release</intermediate-dir>
+									<output-dir>.\Release</output-dir>
+								</file-configuration>
+							</file-configurations>
+						</file>
+						<file name=".\test_db.c">
 							<file-configurations>
 								<file-configuration name="Debug">
 									<excluded-flag value="no"/>

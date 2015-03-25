@@ -15,7 +15,7 @@ static float real_abs(float value)
     return value;
 }
 
-void matching(db_t current_database, version_t input){
+void matching(db_t const pm* current_database, version_t *input){
    
 	result_t result[N_WORDS];
 	
@@ -25,15 +25,15 @@ void matching(db_t current_database, version_t input){
     float error = 0;
     int i, j, k, l;
     for(i = 0; i < N_WORDS; ++i){
-    	word_t temp_word = current_database.words[i];
+    	word_t const pm* temp_word = current_database->words[i];
     	result[i].min_err = FLT_MAX;
     	result[i].mean_err = 0;
-    	result[i].name = temp_word.name;
+    	result[i].name = temp_word->name;
         for(j = 0 ; j < N_VERSIONS; ++j){       	
-            version_t temp_version = temp_word.versions[j];             
+            version_t const pm* temp_version = temp_word->versions[j];             
             for(k = 0; k < SUBSET_LENGTH; ++k){
-            	block_t temp_block = temp_version.subset[k];
-            	block_t temp_input = input.subset[k];
+            	block_t temp_block = temp_version->subset[k];
+            	block_t temp_input = input->subset[k];
             	for(l = 0; l < N_REFLEC; ++l){
             		error = error + real_abs(temp_block.reflect[l] - temp_input.reflect[l]);
            		}

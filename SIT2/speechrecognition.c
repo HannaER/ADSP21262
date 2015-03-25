@@ -26,7 +26,7 @@
 //#include "fft_.h"
 //#include "getX.h"
 //#include "test_signal.h"
-
+#include "test_db.h"
 
 // testar get_x, iir och pre_emph
 //float y[901];
@@ -44,13 +44,13 @@ static float sample_temp[OVERLAP] = {0};
 static float current_block[BLOCK_LENGTH];
 static float temp_block[BLOCK_LENGTH];
 static version_t version;
-static db_t current_db;
+static db_t const pm* current_db;
 
 static int state = 0;
 static int counter = 0;
 int threshold;
 
-
+/*
 void process(int sig){
 
 
@@ -133,11 +133,11 @@ void process(int sig){
 		return;	
 	}
 	return;
-}
+}*/
 
 int main(void)
 {	
-	
+	/*
 	int run = 1;
 	load_db(&current_db);
 
@@ -149,9 +149,10 @@ int main(void)
 
 	while(run){
 		idle();	
-	}
+	}*/
 	
-
+	test_db();
+	current_db = &db;
 	return 0;
 }
 
