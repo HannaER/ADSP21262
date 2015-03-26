@@ -1,3 +1,5 @@
+
+/*
 #include "test_db.h" 
 
 
@@ -391,10 +393,10 @@ version_t const pm version212 = {
 word_t const pm word2 = {"left", &version21, &version22, &version23, &version24, &version25, &version26, &version27, &version28, &version29, &version210, &version211, &version212,
 };
 
+extern db_t const pm current_db = {&word1, &word2};
 
-
-void test_db(){
-	db.words[0] = &word1;
-	db.words[1] = &word2;
+void test_db(db_t const pm** current_db){
+//	*current_db = &database;
 	return; 
 } 
+*/

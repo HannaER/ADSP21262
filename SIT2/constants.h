@@ -1,4 +1,5 @@
 #ifndef CONSTANTS
+
 #define CONSTANTS
 
 #define Fs              8000  //Sample rate in Hz
@@ -59,6 +60,5 @@ typedef struct
 	float mean_err;
 } result_t; // matching result for a db for a type of word
 
-extern db_t pm db; // global variabel för databasen = db
 
 #endif

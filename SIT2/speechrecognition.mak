@@ -94,7 +94,7 @@ Debug/speechrecognition.doj :speechrecognition.c $(VDSP)/212xx/include/stdio.h $
 	@echo ".\speechrecognition.c"
 	$(VDSP)/cc21k.exe -c .\speechrecognition.c -file-attr ProjectName=speechrecognition -g -structs-do-not-overlap -no-multiline -double-size-32 -warn-protos -proc ADSP-21262 -o .\Debug\speechrecognition.doj -MM
 
-Debug/test_db.doj :test_db.c test_db.h constants.h 
+Debug/test_db.doj :test_db.c 
 	@echo ".\test_db.c"
 	$(VDSP)/cc21k.exe -c .\test_db.c -file-attr ProjectName=speechrecognition -g -structs-do-not-overlap -no-multiline -double-size-32 -warn-protos -proc ADSP-21262 -o .\Debug\test_db.doj -MM
 

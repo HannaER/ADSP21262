@@ -44,7 +44,7 @@ static float sample_temp[OVERLAP] = {0};
 static float current_block[BLOCK_LENGTH];
 static float temp_block[BLOCK_LENGTH];
 static version_t version;
-static db_t const pm* current_db;
+//static db_t const pm* current_db;
 
 static int state = 0;
 static int counter = 0;
@@ -128,7 +128,7 @@ void process(int sig){
 		int last = 0;
 		cut(record, &first, &last);
 		create_subsets(record, first, last, &version);
-		matching(current_db, version);
+		matching(&current_db, version);
 		state = 1;		
 		return;	
 	}
@@ -151,8 +151,8 @@ int main(void)
 		idle();	
 	}*/
 	
-	test_db();
-	//current_db = &database;
+	//test_db(&current_db);
+	//current_db = &db;
 	return 0;
 }
 
