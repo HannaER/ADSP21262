@@ -12,17 +12,17 @@
 //number of block of one recording.
 #define N_BLOCKS        150 //( (Fs * REC_TIME)*((BLOCK_LENGTH - OVERLAP) ) )
 
-#define N_REFLEC        3//9 //number of reflection coefficients
+#define N_REFLEC        9 //number of reflection coefficients
 
 #define BUFFER			3 //length of buffer
  
 #define BUFFER_SIZE		((BUFFER)*(BLOCK_LENGTH)) //Buffer length in samples.
 
-#define SUBSET_LENGTH	2//12 // number of subsets
+#define SUBSET_LENGTH	12 // number of subsets
 
-#define	N_VERSIONS 	1//6 // number of versions of a certain word
+#define	N_VERSIONS 	12 // number of versions of a certain word
 
-#define	N_WORDS		1//2 // number of different words we match against
+#define	N_WORDS		2 // number of different words we match against
 
 #define THRESHOLD_MIN	15.0
 
@@ -47,7 +47,7 @@ typedef struct
 
 
 typedef struct{
-	float threshold;
+	//float threshold;
 	word_t const pm* words[N_WORDS];
 } db_t; 
 
@@ -59,6 +59,6 @@ typedef struct
 	float mean_err;
 } result_t; // matching result for a db for a type of word
 
-extern const pm db_t db; // global variabel för databasen = db
+extern db_t pm db; // global variabel för databasen = db
 
 #endif

@@ -152,7 +152,7 @@ int main(void)
 	}*/
 	
 	test_db();
-	current_db = &db;
+	//current_db = &database;
 	return 0;
 }
 
