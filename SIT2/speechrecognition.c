@@ -26,7 +26,7 @@
 //#include "fft_.h"
 //#include "getX.h"
 //#include "test_signal.h"
-#include "test_db.h"
+//#include "test_db.h"
 
 // testar get_x, iir och pre_emph
 //float y[901];
@@ -139,7 +139,6 @@ int main(void)
 {	
 	/*
 	int run = 1;
-	load_db(&current_db);
 
 	dsp_init();
 	
@@ -151,8 +150,6 @@ int main(void)
 		idle();	
 	}*/
 	
-	//test_db(&current_db);
-	//current_db = &db;
 	return 0;
 }
 
