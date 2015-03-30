@@ -48,23 +48,24 @@ static version_t version;
 
 static int state = 0;
 static int counter = 0;
-int threshold;
 
-/*
+
 void process(int sig){
 
 
 	sample_t* audioin = dsp_get_audio();
 	sample_t* audioout = dsp_get_audio();    	
 	int i,j, k;
+
 	
-	if(state == 0){	// init			
+	if(state == 0){	// init	
+		float init_energy;		
 		for(i = 0; i < DSP_BLOCK_SIZE; ++i){
 			sample_temp[i] = audioin[i].left;
 		}
 		rm_noise(sample_temp,sample_old);
-		threshold = calc_norm(sample_old);
-		set_threshold(threshold);
+		init_energy = calc_energy(sample_old);
+		set_energy(init_energy, init_energy);
 		state = 1;
 		return;
 	}	
@@ -73,10 +74,10 @@ void process(int sig){
 			sample_new[i] = audioin[i].left;
 		}
 		rm_noise(sample_new,sample_temp);
-		for(j=0; j < DSP_BLOCK_SIZE; ++j) {
+		/*for(j=0; j < DSP_BLOCK_SIZE; ++j) {
         	audioout[j].left = sample_temp[j];
         	audioout[j].right = sample_temp[j];
-    	}
+    	}*/
 		for(i = 0; i < OVERLAP; i++){
 			current_block[i] = sample_old[i];
 			current_block[OVERLAP + i] = sample_temp[i];
@@ -96,15 +97,16 @@ void process(int sig){
 			sample_new[i] = audioin[i].left;
 		}
 		rm_noise(sample_new,sample_temp);
-		for(j=0; j < DSP_BLOCK_SIZE; ++j) {
+		/*for(j=0; j < DSP_BLOCK_SIZE; ++j) {
         	audioout[j].left = sample_temp[j];
         	audioout[j].right = sample_temp[j];
-    	}
+    	}*/
 		for(j = 0; j < OVERLAP; j++){
 			current_block[j] = sample_old[j];
 			current_block[OVERLAP + j] = sample_temp[j];
 			sample_old[j] = sample_temp[j];
 		}
+		update_energy(current_block);
 		hamming(current_block, temp_block);
 		levinson(temp_block, record[BUFFER + 1 + counter].reflect);
 		record[BUFFER + 1 + counter].energy = calc_energy(temp_block);
@@ -128,16 +130,16 @@ void process(int sig){
 		int last = 0;
 		cut(record, &first, &last);
 		create_subsets(record, first, last, &version);
-		matching(&current_db, version);
+		matching(&current_db, &version);
 		state = 1;		
 		return;	
 	}
 	return;
-}*/
+}
 
 int main(void)
 {	
-	/*
+	
 	int run = 1;
 
 	dsp_init();
@@ -148,7 +150,7 @@ int main(void)
 
 	while(run){
 		idle();	
-	}*/
+	}
 	
 	return 0;
 }

@@ -66,7 +66,7 @@ Debug/hamming.doj :hamming.c $(VDSP)/212xx/include/stdio.h $(VDSP)/212xx/include
 	@echo ".\hamming.c"
 	$(VDSP)/cc21k.exe -c .\hamming.c -file-attr ProjectName=speechrecognition -g -structs-do-not-overlap -no-multiline -double-size-32 -warn-protos -proc ADSP-21262 -o .\Debug\hamming.doj -MM
 
-Debug/level_detect.doj :level_detect.c $(VDSP)/212xx/include/stdio.h $(VDSP)/212xx/include/stdio_21xxx.h constants.h buffer.h level_detect.h 
+Debug/level_detect.doj :level_detect.c $(VDSP)/212xx/include/stdio.h $(VDSP)/212xx/include/stdio_21xxx.h constants.h buffer.h level_detect.h hamming.h 
 	@echo ".\level_detect.c"
 	$(VDSP)/cc21k.exe -c .\level_detect.c -file-attr ProjectName=speechrecognition -g -structs-do-not-overlap -no-multiline -double-size-32 -warn-protos -proc ADSP-21262 -o .\Debug\level_detect.doj -MM
 
@@ -90,7 +90,7 @@ Debug/rm_noise.doj :rm_noise.c $(VDSP)/212xx/include/filter.h $(VDSP)/212xx/incl
 	@echo ".\rm_noise.c"
 	$(VDSP)/cc21k.exe -c .\rm_noise.c -file-attr ProjectName=speechrecognition -g -structs-do-not-overlap -no-multiline -double-size-32 -warn-protos -proc ADSP-21262 -o .\Debug\rm_noise.doj -MM
 
-Debug/speechrecognition.doj :speechrecognition.c $(VDSP)/212xx/include/stdio.h $(VDSP)/212xx/include/stdio_21xxx.h $(VDSP)/212xx/include/processor_include.h $(VDSP)/212xx/include/21262.h $(VDSP)/212xx/include/platform_include.h $(VDSP)/212xx/include/Cdef21262.h $(VDSP)/212xx/include/Cdef21266.h $(VDSP)/212xx/include/def21262.h $(VDSP)/212xx/include/def21266.h $(VDSP)/212xx/include/builtins.h $(VDSP)/212xx/include/sys/builtins_support.h $(VDSP)/212xx/include/signal.h constants.h Levinson.h rm_noise.h level_detect.h buffer.h cut.h create_subsets.h matching.h load_db.h framework.h hamming.h $(VDSP)/212xx/include/def21262.h $(VDSP)/212xx/include/def21266.h $(VDSP)/212xx/include/platform_include.h 
+Debug/speechrecognition.doj :speechrecognition.c $(VDSP)/212xx/include/stdio.h $(VDSP)/212xx/include/stdio_21xxx.h $(VDSP)/212xx/include/processor_include.h $(VDSP)/212xx/include/21262.h $(VDSP)/212xx/include/platform_include.h $(VDSP)/212xx/include/Cdef21262.h $(VDSP)/212xx/include/Cdef21266.h $(VDSP)/212xx/include/def21262.h $(VDSP)/212xx/include/def21266.h $(VDSP)/212xx/include/builtins.h $(VDSP)/212xx/include/sys/builtins_support.h $(VDSP)/212xx/include/signal.h constants.h Levinson.h rm_noise.h level_detect.h buffer.h cut.h create_subsets.h matching.h framework.h hamming.h load_db.h $(VDSP)/212xx/include/def21262.h $(VDSP)/212xx/include/def21266.h $(VDSP)/212xx/include/platform_include.h 
 	@echo ".\speechrecognition.c"
 	$(VDSP)/cc21k.exe -c .\speechrecognition.c -file-attr ProjectName=speechrecognition -g -structs-do-not-overlap -no-multiline -double-size-32 -warn-protos -proc ADSP-21262 -o .\Debug\speechrecognition.doj -MM
 
