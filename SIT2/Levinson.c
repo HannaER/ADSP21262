@@ -1,7 +1,5 @@
+#include "Levinson.h"
 #include <stats.h>
-
-#include "constants.h"
-
 
 /* Calculate the Levinson-Durbin recursion for the autocorrelation
 sequence R of length P+1 and return the autocorrelation coefficients

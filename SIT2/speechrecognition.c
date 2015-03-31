@@ -8,17 +8,20 @@
 #include <signal.h>
 
 // funktioner och defines
+#include "framework.h"
 #include "constants.h"
-#include "Levinson.h"
+#include "load_db.h"
 #include "rm_noise.h"
+#include "hamming.h"
 #include "level_detect.h"
 #include "buffer.h"
+#include "Levinson.h"
 #include "cut.h"
 #include "create_subsets.h"
 #include "matching.h"
-#include "framework.h"
-#include "hamming.h"
-#include "load_db.h"
+
+
+
 
 // includes för tester
 

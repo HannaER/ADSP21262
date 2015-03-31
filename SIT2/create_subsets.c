@@ -1,6 +1,4 @@
-#include <stdio.h>
 #include "create_subsets.h"
-#include "constants.h"
 
 
 void create_subsets(block_t* input, int first, int last, version_t* out){
