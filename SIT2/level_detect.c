@@ -35,7 +35,7 @@ float get_energy(void){
 void update_energy(float* input){ 
 	hamming(input, temp_input);
 	energy = calc_energy(temp_input);
-	P_L = alfa*P_L + (1 - alfa)* energy;
+	P_L = alfa*P_L + (1 - alfa)*energy;
 	P_S = beta*P_S + (1 - beta)*energy;
 }
 

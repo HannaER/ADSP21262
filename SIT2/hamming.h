@@ -166,7 +166,7 @@ extern float const pm hamming_window[BLOCK_LENGTH] = {
 		0.08,
 }; 
 
-void hamming(float* input, float*output);
+void hamming(float* input, float* output);
 
 #endif
 
