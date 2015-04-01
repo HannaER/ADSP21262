@@ -6,7 +6,8 @@
 static float energy = 0;
 static float* temp_input;
 int i, output;	
-
+float P_L;
+float P_S;
 
 void set_energy(float pl, float ps){ 
 		P_L = pl;
@@ -18,11 +19,7 @@ float calc_energy(float* input){
 	energy = 0;
 	for(i = 0; i < BLOCK_LENGTH; i++){ 
 		temp = input[i];
-		if(temp >= 0){
-			energy = energy + temp;
-		} else if (temp < 0){
-			energy = energy - temp;	
-		}
+		energy = energy + temp*temp;
 	}	
 	return energy;
 }
@@ -33,8 +30,8 @@ float get_energy(void){
 
 
 void update_energy(float* input){ 
-	hamming(input, temp_input);
-	energy = calc_energy(temp_input);
+	//hamming(input, temp_input);
+	energy = calc_energy(input);
 	P_L = alfa*P_L + (1 - alfa)*energy;
 	P_S = beta*P_S + (1 - beta)*energy;
 }

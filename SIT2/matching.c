@@ -1,6 +1,6 @@
 #include "matching.h"
 
-#define THRESHOLD_MIN	18.0
+#define THRESHOLD_MIN	N_REFLEC*0.2*N_VERSIONS
 #define THRESHOLD_MEAN	THRESHOLD_MIN*N_VERSIONS
 
 static float real_abs(float value)
@@ -16,8 +16,9 @@ void matching(db_t const pm* current_database, version_t *input){
 	result_t result[N_WORDS];  
     float div = 1/((float)N_VERSIONS);
     float div1 = 1/((float)SUBSET_LENGTH);
-	float mean_energy = 0;
+	//float mean_energy = 0;
     float min_error = 0;
+    float temp_min_err;
     int i, j, k, l;
     for(i = 0; i < N_WORDS; ++i){
     	word_t const pm* temp_word = current_database->words[i];
@@ -29,9 +30,10 @@ void matching(db_t const pm* current_database, version_t *input){
             for(k = 0; k < SUBSET_LENGTH; ++k){
             	block_t temp_block = temp_version->subset[k];
             	block_t temp_input = input->subset[k];
-            	mean_energy = mean_energy  + temp_input.energy*div1;
+            	//mean_energy = mean_energy  + temp_input.energy*div1;
             	for(l = 0; l < N_REFLEC; ++l){
-            		min_error = min_error +  real_abs(temp_block.reflect[l] - temp_input.reflect[l]);
+            		temp_min_err = temp_input.reflect[l];
+            		min_error = min_error +  real_abs(temp_block.reflect[l] - temp_min_err);
             		//mean_error = mean_error + min_error;
            		}
       	   }

@@ -21,8 +21,6 @@
 #include "matching.h"
 
 
-
-
 // includes för tester
 
 //#include <string.h>
@@ -36,9 +34,6 @@
 //float x[901];
 //float z[901];
 //float overlapping_samples[OVERLAP]; // vektor där senaste samplade värdena sparas
-
-
-
 
 static block_t record[N_BLOCKS + BUFFER]; // lista med structs som är inspelningen
 static float sample_old[OVERLAP] = {0};
@@ -54,8 +49,6 @@ static int counter = 0;
 
 
 void process(int sig){
-
-
 	sample_t* audioin = dsp_get_audio();
 	sample_t* audioout = dsp_get_audio();    	
 	int i,j, k;
