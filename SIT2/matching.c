@@ -1,11 +1,7 @@
-#include <stdio.h>
-#include "constants.h"
 #include "matching.h"
-#include "framework.h"
-#include <limits.h>
-#include "load_db.h"
-#include <float.h>
-#include <string.h>
+
+#define THRESHOLD_MIN	N_REFLEC*0.2*N_VERSIONS
+#define THRESHOLD_MEAN	THRESHOLD_MIN*N_VERSIONS
 
 static float real_abs(float value)
 {
@@ -17,12 +13,12 @@ static float real_abs(float value)
 
 void matching(db_t const pm* current_database, version_t *input){
    
-	result_t result[N_WORDS];
-	
-    
-    float div = 1/((float)N_WORDS);
-    
-    float error = 0;
+	result_t result[N_WORDS];  
+    float div = 1/((float)N_VERSIONS);
+    float div1 = 1/((float)SUBSET_LENGTH);
+	//float mean_energy = 0;
+    float min_error = 0;
+    float temp_min_err;
     int i, j, k, l;
     for(i = 0; i < N_WORDS; ++i){
     	word_t const pm* temp_word = current_database->words[i];
@@ -34,22 +30,25 @@ void matching(db_t const pm* current_database, version_t *input){
             for(k = 0; k < SUBSET_LENGTH; ++k){
             	block_t temp_block = temp_version->subset[k];
             	block_t temp_input = input->subset[k];
+            	//mean_energy = mean_energy  + temp_input.energy*div1;
             	for(l = 0; l < N_REFLEC; ++l){
-            		error = error + real_abs(temp_block.reflect[l] - temp_input.reflect[l]);
+            		temp_min_err = temp_input.reflect[l];
+            		min_error = min_error +  real_abs(temp_block.reflect[l] - temp_min_err);
+            		//mean_error = mean_error + min_error;
            		}
       	   }
-      	   if (error < result[i].min_err) {
-      	   		result[i].min_err = error;				
+      	   if (min_error < result[i].min_err) {
+      	   		result[i].min_err = min_error;      	   						
 	  	    }
-	  	    result[i].mean_err = result[i].mean_err + error*div;
-     		error = 0; 
+	  	    result[i].mean_err = result[i].mean_err + min_error*div; 
+     		min_error = 0;
         }
     }
 	
 	validation(result);
 	return;
 }
-/*
+/* for tests
 static int counter = 0;
 static int vanster = 0;
 static int hoger = 0;
@@ -70,14 +69,14 @@ void validation(result_t* results){
 		if(temp_mean > results[i].mean_err){
 			temp_mean = results[i].mean_err;
 			name_mean = results[i].name;
-		}
-		
+		}		
 	} 
 	
 	
 	//if(strcmp(name_min, name_mean) == 0 && temp_min < THRESHOLD_MIN ){
 	//	if(temp_min < THRESHOLD_MIN && temp_mean < THRESHOLD_MEAN){
-		if(1){
+		
+	if(temp_min < THRESHOLD_MIN){
 		printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);
 		if(strcmp(name_min, "right") == 0){
 			dsp_set_leds(7);

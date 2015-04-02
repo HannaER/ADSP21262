@@ -1,9 +1,9 @@
-#include "load_db.h" 
+/*#include "load_db.h" 
 
 #define NaN	0 
 
 void load_db(db_t* current_db){
-/*
+
 	block_t b0, b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11; 
 	version_t version; 
 	word_t word; 
@@ -1912,6 +1912,6 @@ void load_db(db_t* current_db){
  
 	db.words[1] = word;
  
-	*current_db = db; */
+	current_db = db; 
 	return; 
-} 
+} */

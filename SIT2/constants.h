@@ -11,7 +11,7 @@
 #define OVERLAP         80 //How many samples will be copied form previous block into present block
 
 //number of block of one recording.
-#define N_BLOCKS        150 //( (Fs * REC_TIME)*((BLOCK_LENGTH - OVERLAP) ) )
+#define N_BLOCKS        150 //( (Fs * REC_TIME)*((BLOCK_LENGTH - OVERLAP) ) ) 
 
 #define N_REFLEC        9 //number of reflection coefficients
 
@@ -25,9 +25,7 @@
 
 #define	N_WORDS		2 // number of different words we match against
 
-#define THRESHOLD_MIN	15.0
 
-#define THRESHOLD_MEAN	70
 
 typedef struct {
 	float energy; // summan av absolutbeloppen av amplituden
@@ -58,6 +56,7 @@ typedef struct
 	char* name; //name of the word version 
 	float min_err; //smallest error for a version of a word
 	float mean_err;
+	float mean_energy;
 } result_t; // matching result for a db for a type of word
 
 

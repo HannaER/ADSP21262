@@ -1,7 +1,10 @@
 #ifndef HAMMING
 #define HAMMING
+#include "constants.h"
 
-void hamming(float* input, float*output);
+// autogenereras från Matlab:toFileHAMMINGH
+extern float const pm hamming_window[BLOCK_LENGTH];
+void hamming(float* input, float* output);
 
 #endif
 

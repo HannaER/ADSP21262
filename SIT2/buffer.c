@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include "buffer.h"
-#include "constants.h"
 
 static pm float buffer[BUFFER_SIZE]; //dont know if it works with pm here, just remove if not. 
 static int length = 0;

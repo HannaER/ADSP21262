@@ -1,0 +1,83 @@
+
+// tester till senaste create_subsets, kommentera bort load_db i speechrecognition och kopiera ut i main för att köra test, samt byta konstanter i constants,h
+	static block_t testrecord[N_BLOCKS + BUFFER];
+	static version_t testversion;
+	int testfirst = 0;
+	int testlast = N_BLOCKS + BUFFER - 1;
+	testrecord[0].reflect[0] = 1;
+	testrecord[1].reflect[0] = 2;
+	testrecord[2].reflect[0] = 3;
+	testrecord[3].reflect[0] = 4;
+	testrecord[4].reflect[0] = 5;
+	testrecord[5].reflect[0] = 6;
+	
+	testrecord[0].reflect[1] = 1;
+	testrecord[1].reflect[1] = 2;
+	testrecord[2].reflect[1] = 3;
+	testrecord[3].reflect[1] = 4;
+	testrecord[4].reflect[1] = 5;
+	testrecord[5].reflect[1] = 6;
+
+	testrecord[0].reflect[2] = 1;
+	testrecord[1].reflect[2] = 2;
+	testrecord[2].reflect[2] = 3;
+	testrecord[3].reflect[2] = 4;
+	testrecord[4].reflect[2] = 5;
+	testrecord[5].reflect[2] = 6;
+	
+	
+	
+	
+	/*
+	testrecord[0].reflect[0] = 11;
+	testrecord[1].reflect[0] = 21;
+	testrecord[2].reflect[0] = 31;
+	testrecord[3].reflect[0] = 41;
+	testrecord[4].reflect[0] = 51;
+	testrecord[5].reflect[0] = 61;
+	testrecord[6].reflect[0] = 71;
+	testrecord[7].reflect[0] = 81;
+	testrecord[8].reflect[0] = 91;
+	testrecord[9].reflect[0] = 101;
+	testrecord[10].reflect[0] = 111;
+	testrecord[11].reflect[0] = 121;
+	testrecord[12].reflect[0] = 131;
+	testrecord[13].reflect[0] = 141;
+	testrecord[14].reflect[0] = 151;
+	
+	testrecord[0].reflect[1] = 12;
+	testrecord[1].reflect[1] = 22;
+	testrecord[2].reflect[1] = 32;
+	testrecord[3].reflect[1] = 42;
+	testrecord[4].reflect[1] = 52;
+	testrecord[5].reflect[1] = 62;
+	testrecord[6].reflect[1] = 72;
+	testrecord[7].reflect[1] = 82;
+	testrecord[8].reflect[1] = 92;
+	testrecord[9].reflect[1] = 102;
+	testrecord[10].reflect[1] = 112;
+	testrecord[11].reflect[1] = 122;
+	testrecord[12].reflect[1] = 132;
+	testrecord[13].reflect[1] = 142;
+	testrecord[14].reflect[1] = 152;
+	
+	
+	testrecord[0].reflect[2] = 13;
+	testrecord[1].reflect[2] = 23;
+	testrecord[2].reflect[2] = 33;
+	testrecord[3].reflect[2] = 43;
+	testrecord[4].reflect[2] = 53;
+	testrecord[5].reflect[2] = 63;
+	testrecord[6].reflect[2] = 73;
+	testrecord[7].reflect[2] = 83;
+	testrecord[8].reflect[2] = 93;
+	testrecord[9].reflect[2] = 103;
+	testrecord[10].reflect[2] = 113;
+	testrecord[11].reflect[2] = 123;
+	testrecord[12].reflect[2] = 133;
+	testrecord[13].reflect[2] = 143;
+	testrecord[14].reflect[2] = 153;
+	*/
+	create_subsets(testrecord, testfirst, testlast, &testversion);
+
+
