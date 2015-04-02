@@ -343,6 +343,8 @@
 								</file-configuration>
 							</file-configurations>
 						</file>
+						<file name=".\test_create_subset">
+						</file>
 						<file name=".\test_db.c">
 							<file-configurations>
 								<file-configuration name="Debug">

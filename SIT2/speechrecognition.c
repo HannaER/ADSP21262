@@ -70,10 +70,10 @@ void process(int sig){
 			sample_new[i] = audioin[i].left;
 		}
 		rm_noise(sample_new,sample_temp);
-		/*for(j=0; j < DSP_BLOCK_SIZE; ++j) {
-        	audioout[j].left = sample_temp[j];
-        	audioout[j].right = sample_temp[j];
-    	}*/
+		//for(j=0; j < DSP_BLOCK_SIZE; ++j) {
+        //	audioout[j].left = sample_temp[j];
+        //	audioout[j].right = sample_temp[j];
+    	//}
 		for(i = 0; i < OVERLAP; i++){
 			current_block[i] = sample_old[i];
 			current_block[OVERLAP + i] = sample_temp[i];
@@ -93,10 +93,10 @@ void process(int sig){
 			sample_new[i] = audioin[i].left;
 		}
 		rm_noise(sample_new,sample_temp);
-		/*for(j=0; j < DSP_BLOCK_SIZE; ++j) {
-        	audioout[j].left = sample_temp[j];
-        	audioout[j].right = sample_temp[j];
-    	}*/
+		//for(j=0; j < DSP_BLOCK_SIZE; ++j) {
+        //	audioout[j].left = sample_temp[j];
+        //	audioout[j].right = sample_temp[j];
+    	//}
 		for(j = 0; j < OVERLAP; j++){
 			current_block[j] = sample_old[j];
 			current_block[OVERLAP + j] = sample_temp[j];
@@ -135,7 +135,7 @@ void process(int sig){
 
 int main(void)
 {	
-	
+
 	int run = 1;
 
 	dsp_init();
@@ -147,7 +147,6 @@ int main(void)
 	while(run){
 		idle();	
 	}
-	
 	return 0;
 }
 
