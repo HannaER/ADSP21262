@@ -1,22 +1,24 @@
 #include "rm_noise.h"
 #define SAMPLES	OVERLAP//901 // length of x
-#define SECTIONS 2 	//  rm_noise, pre_emph
+#define SECTIONS 3 	//  highpass1, highpass2, pre_emph
 #define GAMMA 	0.5
+#define DELTA1	0.91
+#define DELTA2	0.5
 
 
 const struct{
 	float a0;
 	float a1;
 	float a2;
-}A_coeffs[SECTIONS] = {{1, -0.92, 0}, {1, 0, 0}};
+}A_coeffs[SECTIONS] = {{1, -DELTA1, 0},{1, DELTA2, 0}, {1, 0, 0}};
 	
 const struct{
 	float b0;
 	float b1;
 	float b2;
-}B_coeffs[SECTIONS]= {{1, -1, 0}, {1, -GAMMA, 0}};
+}B_coeffs[SECTIONS]= {{1, -1, 0},{1, -1, 0}, {1, -GAMMA, 0}};
 	
-float const pm coeffs[4*SECTIONS] = {0, 0.92, 0, -1, 0,0,0,-GAMMA};
+float const pm coeffs[4*SECTIONS] = {0, DELTA1, 0, -1,0, DELTA2, 0, -1, 0,0,0,-GAMMA};
 
 void rm_noise(float* x, float* output)
 {

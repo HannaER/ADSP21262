@@ -58,6 +58,7 @@ void process(int sig){
 		float init_energy;		
 		for(i = 0; i < DSP_BLOCK_SIZE; ++i){
 			sample_temp[i] = audioin[i].left;
+			printf("%f, \n", sample_temp[i]);
 		}
 		rm_noise(sample_temp,sample_old);
 		init_energy = calc_energy(sample_old);
@@ -132,6 +133,21 @@ void process(int sig){
 	}
 	return;
 }
+/*
+void recording(int sig){
+	sample_t* audioin = dsp_get_audio();
+	sample_t* audioout = dsp_get_audio(); 
+	static int counter = 1; 
+	int i, res;
+	if(counter <= 150){
+		for(i = 0; i < DSP_BLOCK_SIZE; ++i){
+			
+			res = fwrite("%f, \n" , sizeof(char), rec_length,fp);
+		} 
+		counter = counter + 1; 
+		printf("counter = %d\n", counter);
+	}
+}*/
 
 int main(void)
 {	
@@ -139,14 +155,19 @@ int main(void)
 	int run = 1;
 
 	dsp_init();
-	
+	//printf("rec = [");
 	interrupt(SIG_SP1, process);
+	
+	//FILE* fp = fopen("recording.txt", "w");
+	//int rec_length = 12000;
+	//interrupt(SIG_SP1, recording);
 	
 	dsp_start();
 
 	while(run){
 		idle();	
 	}
+	//printf("];");
 	return 0;
 }
 

@@ -1,6 +1,6 @@
 #include "matching.h"
 
-#define THRESHOLD_MIN	N_REFLEC*0.2*N_VERSIONS
+#define THRESHOLD_MIN	N_REFLEC*0.3*N_VERSIONS
 #define THRESHOLD_MEAN	THRESHOLD_MIN*N_VERSIONS
 
 static float real_abs(float value)
