@@ -1,7 +1,7 @@
 #include "level_detect.h"
 #define alfa 0.99
 #define beta 0.8
-#define threshold 6
+#define threshold 7
 
 static float energy = 0;
 static float* temp_input;
