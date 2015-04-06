@@ -382,6 +382,11 @@
 			</folders>
 		</folder>
 	</folders>
+	<!-- Files under root directly -->
+	<files>
+		<file name=".\Debug\recording.txt">
+		</file>
+	</files>
 	<!-- System Builder Components -->
 	<system-builder-component-tables>
 		<system-builder-plugin name="">

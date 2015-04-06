@@ -4,6 +4,7 @@
  *****************************************************************************/
 //bibliotek
 #include <stdio.h>
+#include <stdlib.h>
 #include <processor_include.h>
 #include <signal.h>
 
@@ -35,6 +36,12 @@
 //float z[901];
 //float overlapping_samples[OVERLAP]; // vektor där senaste samplade värdena sparas
 
+
+// for recordings
+FILE* fp;
+
+		
+		
 static block_t record[N_BLOCKS + BUFFER]; // lista med structs som är inspelningen
 static float sample_old[OVERLAP] = {0};
 static float sample_new[OVERLAP] = {0};
@@ -47,7 +54,7 @@ static version_t version;
 static int state = 0;
 static int counter = 0;
 
-
+/*
 void process(int sig){
 	sample_t* audioin = dsp_get_audio();
 	sample_t* audioout = dsp_get_audio();    	
@@ -58,7 +65,7 @@ void process(int sig){
 		float init_energy;		
 		for(i = 0; i < DSP_BLOCK_SIZE; ++i){
 			sample_temp[i] = audioin[i].left;
-			printf("%f, \n", sample_temp[i]);
+			//printf("%f, \n", sample_temp[i]);
 		}
 		rm_noise(sample_temp,sample_old);
 		init_energy = calc_energy(sample_old);
@@ -132,42 +139,59 @@ void process(int sig){
 		return;	
 	}
 	return;
-}
-/*
+}*/
+
 void recording(int sig){
 	sample_t* audioin = dsp_get_audio();
 	sample_t* audioout = dsp_get_audio(); 
-	static int counter = 1; 
 	int i, res;
+	static int counter = 1;
+	float temp_samp;
+	int rec_length = 10;
+	char temp_str[10];
+	if(counter == 1){
+		printf("Starts recording now\n");
+		fprintf(fp, "rec = [ \n", counter);	
+	}
 	if(counter <= 150){
 		for(i = 0; i < DSP_BLOCK_SIZE; ++i){
-			
-			res = fwrite("%f, \n" , sizeof(char), rec_length,fp);
+			temp_samp = audioin[i].left; 
+			fprintf(fp, "%f, \n", temp_samp);
+			//snprintf(temp_str, 10, "%f, \n", temp_samp);	
+			//res = fwrite(&temp_str, sizeof(char), rec_length,fp);
+			//if(res != rec_length){
+			//	printf("fwrite not successful");
+			//}
 		} 
-		counter = counter + 1; 
-		printf("counter = %d\n", counter);
+		counter = counter + 1;
+	} if(counter == 151) {
+		fprintf(fp, "]; \nsoundsc(rec);\n",counter);		
+		fclose(fp);
+		printf("Finished recording\n");
+		counter = counter + 1;
+		exit(1);
+		return;
 	}
-}*/
+	return;
+}
 
 int main(void)
 {	
 
 	int run = 1;
-
 	dsp_init();
-	//printf("rec = [");
-	interrupt(SIG_SP1, process);
-	
-	//FILE* fp = fopen("recording.txt", "w");
-	//int rec_length = 12000;
-	//interrupt(SIG_SP1, recording);
+	//interrupt(SIG_SP1, process);
+	fp = fopen("recording.txt", "w");
+	if(!fp){
+		printf("fopen not successful\n");
+	}
+	interrupt(SIG_SP1, recording);
 	
 	dsp_start();
 
 	while(run){
 		idle();	
 	}
-	//printf("];");
 	return 0;
 }
 
