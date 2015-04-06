@@ -1,7 +1,8 @@
 #include "matching.h"
 
-#define THRESHOLD_MIN	N_REFLEC*0.3*N_VERSIONS
-#define THRESHOLD_MEAN	THRESHOLD_MIN*N_VERSIONS
+#define THRESHOLD_MIN	N_REFLEC*0.14*N_VERSIONS
+#define THRESHOLD_LEFT	THRESHOLD_MIN
+#define THRESHOLD_RIGHT THRESHOLD_MIN*1.3
 
 static float real_abs(float value)
 {
@@ -75,22 +76,29 @@ void validation(result_t* results){
 	
 	//if(strcmp(name_min, name_mean) == 0 && temp_min < THRESHOLD_MIN ){
 	//	if(temp_min < THRESHOLD_MIN && temp_mean < THRESHOLD_MEAN){
-		
-	if(temp_min < THRESHOLD_MIN){
-		printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);
-		if(strcmp(name_min, "right") == 0){
+	if(strcmp(name_min, name_mean) == 0){	
+	//if(temp_min < THRESHOLD_MIN){
+		if(strcmp(name_min, "right" ) == 0 && temp_min <THRESHOLD_RIGHT){
+			printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);
 			dsp_set_leds(7);
 			//hoger = hoger + 1;
-			
+			return;
 		}
-		if(strcmp(name_min, "left") == 0){
+		if(strcmp(name_min, "left") == 0  && temp_min < THRESHOLD_LEFT){
+			printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);			
 			dsp_set_leds(56);
 			//vanster = vanster +1 ;
+			return;
+		} else {
+			printf("No matching word found, try again! Min-error: %f Mean-error: %f \n", temp_min, temp_mean);
+			dsp_set_leds(63);
+			return;	
 		}
 	}else {
 		printf("No matching word found, try again! Min-error: %f Mean-error: %f \n", temp_min, temp_mean);
 		dsp_set_leds(63);
 		//fel = fel +1;
+		return;
 	}	
 	/*counter = counter + 1;
 	if(counter == 100){

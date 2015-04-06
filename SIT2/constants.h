@@ -21,7 +21,7 @@
 
 #define SUBSET_LENGTH	12 // number of subsets
 
-#define	N_VERSIONS 	12 // number of versions of a certain word
+#define	N_VERSIONS 	15 // number of versions of a certain word
 
 #define	N_WORDS		2 // number of different words we match against
 
