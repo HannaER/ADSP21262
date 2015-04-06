@@ -38,7 +38,7 @@
 
 
 // for recordings
-FILE* fp;
+//FILE* fp;
 
 		
 		
@@ -54,7 +54,7 @@ static version_t version;
 static int state = 0;
 static int counter = 0;
 
-/*
+
 void process(int sig){
 	sample_t* audioin = dsp_get_audio();
 	sample_t* audioout = dsp_get_audio();    	
@@ -139,8 +139,8 @@ void process(int sig){
 		return;	
 	}
 	return;
-}*/
-
+}
+/*
 void recording(int sig){
 	sample_t* audioin = dsp_get_audio();
 	sample_t* audioout = dsp_get_audio(); 
@@ -173,19 +173,19 @@ void recording(int sig){
 		return;
 	}
 	return;
-}
+}*/
 
 int main(void)
 {	
 
 	int run = 1;
 	dsp_init();
-	//interrupt(SIG_SP1, process);
-	fp = fopen("recording.txt", "w");
-	if(!fp){
-		printf("fopen not successful\n");
-	}
-	interrupt(SIG_SP1, recording);
+	interrupt(SIG_SP1, process);
+	//fp = fopen("recording.txt", "w");
+	//if(!fp){
+	//	printf("fopen not successful\n");
+	//}
+	//interrupt(SIG_SP1, recording);
 	
 	dsp_start();
 
