@@ -24,7 +24,7 @@
 
 #define	N_WORDS		2 // number of different words we match against
 
-#define THRESHOLD_MIN	15.0
+#define THRESHOLD_MIN	17.0
 
 #define THRESHOLD_MEAN	70
 

@@ -75,9 +75,9 @@ void validation(result_t* results){
 	} 
 	
 	
-	//if(strcmp(name_min, name_mean) == 0 && temp_min < THRESHOLD_MIN ){
+	if(strcmp(name_min, name_mean) == 0 && temp_min < THRESHOLD_MIN ){
 	//	if(temp_min < THRESHOLD_MIN && temp_mean < THRESHOLD_MEAN){
-		if(1){
+	//	if(1){
 		printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);
 		if(strcmp(name_min, "right") == 0){
 			dsp_set_leds(7);
