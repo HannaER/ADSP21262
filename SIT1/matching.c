@@ -49,11 +49,11 @@ void matching(db_t current_database, version_t input){
 	validation(result);
 	return;
 }
-/*
+
 static int counter = 0;
 static int vanster = 0;
 static int hoger = 0;
-static int fel = 0;*/
+static int fel = 0;
 
 void validation(result_t* results){
 	
@@ -78,25 +78,26 @@ void validation(result_t* results){
 	if(strcmp(name_min, name_mean) == 0 && temp_min < THRESHOLD_MIN ){
 	//	if(temp_min < THRESHOLD_MIN && temp_mean < THRESHOLD_MEAN){
 	//	if(1){
-		printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);
+	//	printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);
 		if(strcmp(name_min, "right") == 0){
 			dsp_set_leds(7);
-			//hoger = hoger + 1;
+			hoger = hoger + 1;
 			
 		}
 		if(strcmp(name_min, "left") == 0){
 			dsp_set_leds(56);
-			//vanster = vanster +1 ;
+			vanster = vanster +1 ;
 		}
 	}else {
-		printf("No matching word found, try again! Min-error: %f Mean-error: %f \n", temp_min, temp_mean);
+		//printf("No matching word found, try again! Min-error: %f Mean-error: %f \n", temp_min, temp_mean);
 		dsp_set_leds(63);
-		//fel = fel +1;
+		fel = fel +1;
 	}	
-	/*counter = counter + 1;
+	counter = counter + 1;
+	printf("counter: %d\n", counter);
 	if(counter == 100){
 		printf("Testresultatet: Vänster: %d, Höger: %d, Fel: %d \n" ,vanster, hoger, fel );	
-	}*/
+	}
 	return;	
 }
 

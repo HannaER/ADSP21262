@@ -24,7 +24,7 @@ int level_detect(float* input){
 		counter = counter + 9;
 		if(counter > 45) {
 		output = 1; // true			
-		} else if(counter <= 36) {
+		} else if(counter <= 45) {
 		put(input);
 		output = 0;	
 		}
