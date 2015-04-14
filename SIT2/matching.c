@@ -2,7 +2,7 @@
 
 #define THRESHOLD_MIN	N_REFLEC*0.14*N_VERSIONS
 #define THRESHOLD_LEFT	THRESHOLD_MIN
-#define THRESHOLD_RIGHT THRESHOLD_MIN*1.3
+#define THRESHOLD_RIGHT THRESHOLD_MIN*1.2
 
 static float real_abs(float value)
 {
@@ -49,11 +49,11 @@ void matching(db_t const pm* current_database, version_t *input){
 	validation(result);
 	return;
 }
-/* for tests
+//for tests
 static int counter = 0;
 static int vanster = 0;
 static int hoger = 0;
-static int fel = 0;*/
+static int fel = 0;
 
 void validation(result_t* results){
 	
@@ -76,34 +76,38 @@ void validation(result_t* results){
 	
 	//if(strcmp(name_min, name_mean) == 0 && temp_min < THRESHOLD_MIN ){
 	//	if(temp_min < THRESHOLD_MIN && temp_mean < THRESHOLD_MEAN){
-	if(strcmp(name_min, name_mean) == 0){	
-	//if(temp_min < THRESHOLD_MIN){
+	//if(strcmp(name_min, name_mean) == 0){	
+	printf("counter: %d \n", counter);	
+	if(counter == 100){
+		printf("Testresultatet: Vänster: %d, Höger: %d, Fel: %d \n" ,vanster, hoger, fel );	
+	}	
+	if(temp_min < THRESHOLD_RIGHT){
 		if(strcmp(name_min, "right" ) == 0 && temp_min <THRESHOLD_RIGHT){
-			printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);
+		//	printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);
 			dsp_set_leds(7);
-			//hoger = hoger + 1;
-			return;
+			hoger = hoger + 1;
+			counter = counter + 1;	
+			return;;
 		}
 		if(strcmp(name_min, "left") == 0  && temp_min < THRESHOLD_LEFT){
-			printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);			
+		//	printf("The matched word is \"%s\". Min-error: %f Mean-error: %f \n", name_min, temp_min, temp_mean);			
 			dsp_set_leds(56);
-			//vanster = vanster +1 ;
+			vanster = vanster +1;
+			counter = counter + 1;	
 			return;
 		} else {
-			printf("No matching word found, try again! Min-error: %f Mean-error: %f \n", temp_min, temp_mean);
+			//printf("No matching word found, try again! Min-error: %f Mean-error: %f \n", temp_min, temp_mean);
 			dsp_set_leds(63);
+			fel = fel +1;
+			counter = counter + 1;				
 			return;	
 		}
 	}else {
-		printf("No matching word found, try again! Min-error: %f Mean-error: %f \n", temp_min, temp_mean);
+		//printf("No matching word found, try again! Min-error: %f Mean-error: %f \n", temp_min, temp_mean);
 		dsp_set_leds(63);
-		//fel = fel +1;
-		return;
-	}	
-	/*counter = counter + 1;
-	if(counter == 100){
-		printf("Testresultatet: Vänster: %d, Höger: %d, Fel: %d \n" ,vanster, hoger, fel );	
-	}*/
+		fel = fel +1;
+		counter = counter + 1;
+	}		
 	return;	
 }
 
